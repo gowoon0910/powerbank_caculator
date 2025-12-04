@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.2.3.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot; /&gt;
+&lt;title&gt;<span lang="zh-CN">배터리 계산기</span>&lt;/title&gt;
+&lt;style&gt;body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;padding:20px}input{margin:5px;padding:5px;width:120px}button{padding:6px 14px}.box{margin-bottom:30px;padding:15px;border:1px solid #ddd;border-radius:10px}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;🔋 <span lang="zh-CN">간단 배터리 계산기</span>&lt;/h2&gt;
+&lt;div class=&quot;box&quot;&gt;
+&lt;h3&gt;1) mAh → Wh <span lang="zh-CN">계산</span>&lt;/h3&gt;
+&lt;label&gt;mAh: &lt;input id=&quot;mah&quot;&gt;&lt;/label&gt;&lt;br&gt;
+&lt;label&gt;<span lang="zh-CN">전압</span>(V): &lt;input id=&quot;v1&quot;&gt;&lt;/label&gt;&lt;br&gt;
+&lt;button onclick=&quot;calcWh()&quot;&gt;<span lang="zh-CN">계산</span>&lt;/button&gt;
+&lt;div id=&quot;result1&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;box&quot;&gt;
+&lt;h3&gt;2) A → W <span lang="zh-CN">계산</span>&lt;/h3&gt;
+&lt;label&gt;A(<span lang="zh-CN">암페어</span>): &lt;input id=&quot;amp&quot;&gt;&lt;/label&gt;&lt;br&gt;
+&lt;label&gt;<span lang="zh-CN">전압</span>(V): &lt;input id=&quot;v2&quot;&gt;&lt;/label&gt;&lt;br&gt;
+&lt;button onclick=&quot;calcW()&quot;&gt;<span lang="zh-CN">계산</span>&lt;/button&gt;
+&lt;div id=&quot;result2&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+function category(wh){ if(wh&lt;=100) return &quot;✔ 100Wh <span lang="zh-CN">이하 → 기내 반입 가능</span>&quot;; if(wh&lt;=160) return &quot;⚠ 100~160Wh → <span lang="zh-CN">항공사 승인 필요</span>&quot;; return &quot;❌ 160Wh <span lang="zh-CN">초과 → 반입 불가</span>&quot;; }
+function calcWh(){ let m=parseFloat(document.getElementById(&quot;mah&quot;).value); let v=parseFloat(document.getElementById(&quot;v1&quot;).value); if(!m||!v){document.getElementById(&quot;result1&quot;).innerHTML=&quot;<span lang="zh-CN">값을 입력하세요</span>.&quot;;return;} let wh=(m/1000)*v; document.getElementById(&quot;result1&quot;).innerHTML=`<span lang="zh-CN">결과</span>: &lt;b&gt;${wh.toFixed(2)} Wh&lt;/b&gt;&lt;br&gt;${category(wh)}`; }
+function calcW(){ let a=parseFloat(document.getElementById(&quot;amp&quot;).value); let v=parseFloat(document.getElementById(&quot;v2&quot;).value); if(!a||!v){document.getElementById(&quot;result2&quot;).innerHTML=&quot;<span lang="zh-CN">값을 입력하세요</span>.&quot;;return;} let watt=a*v; document.getElementById(&quot;result2&quot;).innerHTML=`<span lang="zh-CN">결과</span>: &lt;b&gt;${watt.toFixed(2)} W&lt;/b&gt;&lt;br&gt;${category(watt)}`; }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
