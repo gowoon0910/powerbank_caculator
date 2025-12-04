@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>배터리 계산기</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;padding:20px}input{margin:5px;padding:5px;width:120px}button{padding:6px 14px}.box{margin-bottom:30px;padding:15px;border:1px solid #ddd;border-radius:10px}</style>
+</head>
+<body>
+<h2>🔋 간단 배터리 계산기</h2>
+<div class="box">
+<h3>1) mAh → Wh 계산</h3>
+<label>mAh: <input id="mah"></label><br>
+<label>전압(V): <input id="v1"></label><br>
+<button onclick="calcWh()">계산</button>
+<div id="result1"></div>
+</div>
+<div class="box">
+<h3>2) A → W 계산</h3>
+<label>A(암페어): <input id="amp"></label><br>
+<label>전압(V): <input id="v2"></label><br>
+<button onclick="calcW()">계산</button>
+<div id="result2"></div>
+</div>
+<script>
+function category(wh){ if(wh<=100) return "✔ 100Wh 이하 → 기내 반입 가능"; if(wh<=160) return "⚠ 100~160Wh → 항공사 승인 필요"; return "❌ 160Wh 초과 → 반입 불가"; }
+function calcWh(){ let m=parseFloat(document.getElementById("mah").value); let v=parseFloat(document.getElementById("v1").value); if(!m||!v){document.getElementById("result1").innerHTML="값을 입력하세요.";return;} let wh=(m/1000)*v; document.getElementById("result1").innerHTML=`결과: <b>${wh.toFixed(2)} Wh</b><br>${category(wh)}`; }
+function calcW(){ let a=parseFloat(document.getElementById("amp").value); let v=parseFloat(document.getElementById("v2").value); if(!a||!v){document.getElementById("result2").innerHTML="값을 입력하세요.";return;} let watt=a*v; document.getElementById("result2").innerHTML=`결과: <b>${watt.toFixed(2)} W</b><br>${category(watt)}`; }
+</script>
+</body>
+</html>
